@@ -1,9 +1,10 @@
 from django.db import models
 
 # Create your models here.
-class Destino:
-    id: int
-    nombre: str
-    img: str
-    descripcion: str
-    precio: int
+class DestinosTuristicos(models.Model):
+    nombreCiudad = models.CharField(max_length=32)
+    descripcionCiudad = models.TextField(max_length=128)
+    imagenCiudad = models.ImageField()
+    precioTour = models.IntegerField()
+    ofertaTour = models.BooleanField(default=False)
+    
