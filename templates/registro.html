@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form method='post'>
+    <form action='registro' method='POST'>
         {% csrf_token %}
         <input type="text" name='first_name' placeholder='Nombre'><br>
         <input type="text" name='last_name' placeholder='Apellidos'><br>
