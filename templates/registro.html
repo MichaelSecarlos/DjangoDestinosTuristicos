@@ -1,27 +1,46 @@
+{% load static %}
+{% static 'images' as baseUrl %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    {% include 'head.html'%}
+    <link rel="stylesheet" type='text/css' href="{% static 'styles/forms.css' %}">
 <body>
-    <form action='registro' method='POST'>
-        {% csrf_token %}
-        <input type="text" name='first_name' placeholder='Nombre'><br>
-        <input type="text" name='last_name' placeholder='Apellidos'><br>
-        <input type="text" name='username' placeholder='User Name'><br>
-        <input type="email" name='email' placeholder='Email'><br>
-        <input type="password" name='password1' placeholder='Contraseña'><br>
-        <input type="password" name='password2' placeholder='Contraseña'><br>
-        <input type="submit" value="Send">
-    </form>
-    <div>
-            {% for message in messages%}
-            <h3>
-                {{message}}
-            </h3>
-            {% endfor%}
+    <div class="super_container">
+        <!-- Menu -->
+        {% include 'menu.html' %}
+        <!--Home-->
+        {% include 'home.html' %}
+        <!-- Search -->
+        <div id='formulario_container'>
+            <div id='formulario_header'>
+                Registrar un nuevo usuario
+            </div>
+            <form action='registro' method='POST'>
+                {% csrf_token %}
+                <input id='input_form' class="search_input" type="text" name='first_name' placeholder='Nombre'>
+                <input id='input_form' class="search_input" type="text" name='last_name' placeholder='Apellidos'>
+                <br>
+                <input id='input_form' class="search_input" type="text" name='username' placeholder='User Name'>
+                <input id='input_form' class="search_input" type="email" name='email' placeholder='Email'>
+                <br>
+                <input id='input_form' class="search_input" type="password" name='password1' placeholder='Contraseña'>
+                <input id='input_form' class="search_input" type="password" name='password2' placeholder='Contraseña'>
+                <br>
+                <input id='submit_form' type="submit" value="Crear">
+            </form>
+            <div id='formulario_descripcion'>
+                ¿Olvidaste tu contraseña?, aun no podemos recuperarla.
+            </div>
+            <div>
+                {% for message in messages%}
+                <div id='mensaje_error'>
+                    {{message}}
+                </div>
+                {% endfor%}
+            </div>
+        </div>
+        {% include 'footer.html'%}
     </div>
+    {% include 'scripts.html'%}
 </body>
 </html>

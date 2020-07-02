@@ -1,23 +1,41 @@
+{% load static %}
+{% static 'images' as baseUrl %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    {% include 'head.html'%}
+    <link rel="stylesheet" type='text/css' href="{% static 'styles/forms.css' %}">
 <body>
-    <form action='login' method='POST'>
-        {% csrf_token %}
-        <input type="text" name='username' placeholder="Nombre de usuario"><br>
-        <input type="password" name='password' placeholder='Contraseña'><br>
-        <input type="submit" value='Entrar'>
-    </form>
-    <div>
-        {% for message in messages%}
-        <h3>
-            {{message}}
-        </h3>
-        {% endfor%}
-</div>
+    <div class="super_container">
+        <!-- Menu -->
+        {% include 'menu.html' %}
+        <!--Home-->
+        {% include 'home.html' %}
+        <!-- Search -->
+        <div id='formulario_container'>
+            <div id='formulario_header'>
+                Iniciar Sesion
+            </div>
+            <form id='formulario_form' action='login' method='POST'>
+                {% csrf_token %}
+                <input id='input_form' class="search_input" type="text" name='username' placeholder="Nombre de usuario">
+                <br>
+                <input id='input_form' class="search_input" type="password" name='password' placeholder='Contraseña'>
+                <br>
+                <input id='submit_form' type="submit" value='Entrar'>
+            </form>
+            <div id='formulario_descripcion'>
+                ¿No dispones de una cuenta?, registrate <a id='redireccion' href="registro">Aqui</a>
+            </div>
+            <div>
+                {% for message in messages%}
+                <div id='mensaje_error'>
+                    {{message}}
+                </div>
+                {% endfor%}
+            </div>
+        </div>
+        {% include 'footer.html'%}
+    </div>
+    {% include 'scripts.html'%}
 </body>
 </html>
