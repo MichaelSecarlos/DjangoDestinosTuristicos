@@ -1,0 +1,24 @@
+{% load static %}
+{% static 'images' as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head.html'%}
+<body>
+    {% include 'menu.html' %}
+    {% include 'home.html' %}
+    <div id='eliminarDestino'>
+        <div class='seleccionEliminar'>
+            <div class='opcionEliminar'>
+                <form action="eliminar" method='POST'>
+                    <input type="submit" value='SI'>
+                </form>
+            </div>
+            <div class='opcionEliminar'>
+                <form action=".." method='POST'>
+                    <input type="submit" value='NO'>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
