@@ -20,3 +20,23 @@ def destinosRegister(request):
         'form':form
     }
     return render(request , 'registroDestinos.html' , context)
+
+#Editar los destinos turisticos
+def destinosEdit(request , id_destino):
+    obj = DestinosTuristicos.objects.get(id=id_destino)
+    form = DestinosForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+    form = DestinosForm(instance=obj)
+    context = {
+        'form':form
+    }
+    return render(request , 'editarDestinos.html' , context)
+
+#Listar los destinos turisticos
+def destinosLista(request):
+    destinos = DestinosTuristicos.objects.all()
+    context = {
+        'destinos':destinos,
+    }
+    return render(request , 'listarDestinos.html' , context)
