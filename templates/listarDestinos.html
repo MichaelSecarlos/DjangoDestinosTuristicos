@@ -1,0 +1,32 @@
+{% load static %}
+{% static 'images' as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head.html'%}
+    <link rel="stylesheet" href="{% static 'styles/listarDestinos.css' %}">
+<body>
+    <div class="super_container">
+        <!-- Menu -->
+        {% include 'menu.html' %}
+        <!--Home-->
+        {% include 'home.html' %}
+        <!-- Search -->
+        <div id='listaDestinos'>
+            <ul>
+                {% for destino in destinos %}
+                <li>
+                    <form action='editar/{{destino.id}}' method='POST'>
+                        {% csrf_token %}
+                        <h3>{{destino.nombreCiudad}}</h3>
+                        <h4>{{destino.descripcionCiudad}}</h3>
+                        <input type="submit" value='Editar'>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% include 'footer.html'%}
+    </div>
+    {% include 'scripts.html'%}
+</body>
+</html>
