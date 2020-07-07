@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , get_object_or_404 , redirect
 from .models import DestinosTuristicos
 from .forms import DestinosForm
 
@@ -40,3 +40,16 @@ def destinosLista(request):
         'destinos':destinos,
     }
     return render(request , 'listarDestinos.html' , context)
+
+#Eliminar el destino seleccionado
+def destinosEliminar(request , id_destino):
+    obj = get_object_or_404(DestinosTuristicos , id=id_destino)
+    if request.method == 'POST':
+        print("Borrando elemento...")
+        obj.delete()
+        print("Se ha borrado el elemento de la base de datos.")
+        redirect("lista")
+    context = {
+        'obj':obj,
+    }
+    return render(request , 'eliminarDestinos.html' , context)
