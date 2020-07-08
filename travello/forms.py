@@ -17,7 +17,7 @@ class DestinosForm(forms.ModelForm):
             'descripcionCiudad':'',
             'imagenCiudad':'',
             'precioTour':'',
-            'ofertaTour':'Esta en oferta'
+            'ofertaTour':'En Oferta'
         }
         widgets={
             'nombreCiudad': forms.TextInput(attrs={
@@ -33,8 +33,4 @@ class DestinosForm(forms.ModelForm):
             'precioTour': forms.TextInput(attrs={
                 'placeholder':'Precio Tour',
                 'class':'search_input'
-            })
-            
-
-        }
-    
+            })}
