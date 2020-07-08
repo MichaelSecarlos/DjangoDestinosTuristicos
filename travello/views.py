@@ -9,47 +9,56 @@ def index(request):
 
 #Registro de los nuevos destinos turisticos
 def destinosRegister(request):
-    if request.method == 'POST':
-        form = DestinosForm(request.POST or None, request.FILES)
-        if form.is_valid():
-            form.save()
-            form = DestinosForm()
+    if request.user.is_authenticated and request.user.is_staff:
+        if request.method == 'POST':
+            form = DestinosForm(request.POST or None, request.FILES)
+            if form.is_valid():
+                form.save()
+                form = DestinosForm()
+                return redirect('../listar')
+        else:
+            form = DestinosForm(request.POST or None)
+        context = {
+            'form':form
+        }
+        return render(request , 'registroDestinos.html' , context)
     else:
-        form = DestinosForm(request.POST or None)
-    context = {
-        'form':form
-    }
-    return render(request , 'registroDestinos.html' , context)
-
+        return redirect("/")
 #Editar los destinos turisticos
 def destinosEdit(request , id_destino):
-    obj = DestinosTuristicos.objects.get(id=id_destino)
-    form = DestinosForm(request.POST or None, instance=obj)
-    if form.is_valid():
-        form.save()
-    form = DestinosForm(instance=obj)
-    context = {
-        'form':form
-    }
-    return render(request , 'editarDestinos.html' , context)
-
+    if request.user.is_authenticated and request.user.is_staff:
+        obj = DestinosTuristicos.objects.get(id=id_destino)
+        form = DestinosForm(request.POST or None, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('../listar')
+        form = DestinosForm(instance=obj)
+        context = {
+            'form':form
+        }
+        return render(request , 'editarDestinos.html' , context)
+    else:
+        return redirect("/")
 #Listar los destinos turisticos
 def destinosLista(request):
-    destinos = DestinosTuristicos.objects.all()
-    context = {
-        'destinos':destinos,
-    }
-    return render(request , 'listarDestinos.html' , context)
-
+    if request.user.is_authenticated and request.user.is_staff:
+        destinos = DestinosTuristicos.objects.all()
+        context = {
+            'destinos':destinos,
+        }
+        return render(request , 'listarDestinos.html' , context)
+    else:
+        return redirect("/")
 #Eliminar el destino seleccionado
 def destinosEliminar(request , id_destino):
-    obj = get_object_or_404(DestinosTuristicos , id=id_destino)
-    if request.method == 'POST':
-        print("Borrando elemento...")
-        obj.delete()
-        print("Se ha borrado el elemento de la base de datos.")
-        redirect("lista")
-    context = {
-        'obj':obj,
-    }
-    return render(request , 'eliminarDestinos.html' , context)
+    if request.user.is_authenticated and request.user.is_staff:
+        obj = get_object_or_404(DestinosTuristicos , id=id_destino)
+        if request.method == 'POST':
+            obj.delete()
+            return redirect("/listar")
+        context = {
+            'obj':obj,
+        }
+        return render(request , 'eliminarDestinos.html' , context)
+    else:
+        return redirect("/")
