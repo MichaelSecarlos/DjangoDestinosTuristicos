@@ -1,0 +1,83 @@
+#lista_destinos
+{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.destino_field
+{
+    padding: 0px;
+    margin: 10px;
+    transition: 0.2s;
+    background: rgba(30, 30, 30, 0.1);
+    box-shadow: 0px 8px 15px gray;
+
+}
+.con_oferta_destino
+{
+    color: green;
+}
+.sin_oferta_destino
+{
+    color: red;
+    text-decoration-line: line-through;
+}
+.destino_field:hover
+{
+    transform: scale(1.01);
+    background: white;
+}
+.nombre_destino
+{
+    background: rgb(34, 57, 77);
+    color: white;
+    font-size: 30px;
+    padding-left: 30px;
+}
+.descripcion_destino
+{
+    padding: 5px;
+    padding-left: 15px;
+    color: rgb(31,31,31);
+}
+.precio_destino_descripcion
+{
+    padding: 5px;
+    padding-left: 15px;
+}
+.precio_destino{
+    color: rgb(31,31,31);
+    font-family: 'Courier New', Courier, monospace;
+}
+form{display: inline;}
+.eliminar_submit
+{
+    border: 1px transparent solid;
+    padding: 10px;
+    width: 49.83%;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: 0.1s;
+}
+.eliminar_submit:focus
+{
+    outline: dashed;
+}
+.eliminar_submit:hover
+{
+    background-color: rgb(44, 77, 97);
+    color: white;
+}
+.formularios
+{
+    position: relative;
+    width: 100%;
+}
+.titulo_seccion
+{
+    color: rgb(0, 45, 57);
+    font-size: 30px;
+}
+.inicio_seccion, .final_seccion
+{
+    text-align: center;
+}
