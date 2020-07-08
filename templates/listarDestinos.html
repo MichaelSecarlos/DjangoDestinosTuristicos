@@ -11,19 +11,50 @@
         <!--Home-->
         {% include 'home.html' %}
         <!-- Search -->
-        <div id='listaDestinos'>
+        <div id='lista_destinos'>
+            <div class='inicio_seccion'>
+                <p class='titulo_seccion'>
+                    Lista de Destinos Turisticos
+                </p>
+                <p>
+                    A continuacion se tienen los destinos turisticos registrados hasta el momento.
+                </p>
+            </div>
             <ul>
                 {% for destino in destinos %}
                 <li>
-                    <form action='editar/{{destino.id}}' method='POST'>
-                        {% csrf_token %}
-                        <h3>{{destino.nombreCiudad}}</h3>
-                        <h4>{{destino.descripcionCiudad}}</h3>
-                        <input type="submit" value='Editar'>
-                    </form>
+                    <div class='destino_field'>
+                        <div class='nombre_destino'>{{destino.nombreCiudad}}</div>
+                        <div class='descripcion_destino'>{{destino.descripcionCiudad}}</div>
+                        <div class='precio_destino_descripcion'>
+                            {% if destino.ofertaTour %}
+                            <b class='con_oferta_destino'>En oferta: </b><b class='precio_destino'>{{destino.precioTour}}</b>
+                            {% else %}
+                            <b class='sin_oferta_destino'>En oferta: </b><b class='precio_destino'>{{destino.precioTour}}</b>
+                            {% endif %}
+                        </div>
+                        <div class='formularios'>
+                            <form action='editar/{{destino.id}}' method='POST'>
+                                {% csrf_token %}
+                                <input type="submit" value='Editar' class='eliminar_submit'>
+                            </form>
+                            <form action='eliminar/{{destino.id}}' method='POST'>
+                                {% csrf_token %}
+                                <input type="submit" value='Eliminar' class='eliminar_submit'>
+                            </form>
+                        </div>
+                    </div>
                 </li>
                 {% endfor %}
             </ul>
+        </div>
+        <div class='final_seccion'>
+            <p>
+                Recuerda que debes tener mucho cuidado al modificar o eliminar los registros de los destinos turisticos.
+            </p>
+            <p>
+                Puedes volver a la pagina principal <a href='..' id='redireccion'>Aqui</a>
+            </p>
         </div>
         {% include 'footer.html'%}
     </div>
