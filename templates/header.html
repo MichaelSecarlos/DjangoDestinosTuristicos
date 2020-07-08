@@ -14,6 +14,10 @@
                                 <li class="active"><a href="index.html">Home</a></li>
                                 {% if user.is_authenticated %}
                                     <li>Hello, {{user.first_name}}.</li>
+                                    {% if user.is_staff %}
+                                    <li><a href="registro">Añadir nuevo destinos</a></li>
+                                    <li><a href="listar">Listar destinos</a></li>
+                                    {% endif %}
                                     <li><a href="cuentas/logout">Cerrar Sesion</a></li>
                                 {% else %}
                                     <li><a href="cuentas/registro">Registrarse</a></li>
