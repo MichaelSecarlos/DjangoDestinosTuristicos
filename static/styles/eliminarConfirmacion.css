@@ -1,0 +1,37 @@
+#eliminarDestino
+{
+    padding: 50px;
+    text-align: center;
+}
+.seleccionEliminar
+{
+    background: rgba(30, 30, 30, 0.1);
+
+}
+.seleccion_header
+{
+    background: rgb(34, 57, 77);
+    color: white;
+    padding-left: 30px;
+    font-size: 30px;
+}
+
+form{display: inline;}
+.input_seleccion
+{
+    border: 1px transparent solid;
+    padding: 10px;
+    width: 49.83%;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: 0.1s;
+}
+.input_seleccion:focus
+{
+    outline: dashed;
+}
+.input_seleccion:hover
+{
+    background-color: rgb(44, 77, 97);
+    color: white;
+}
