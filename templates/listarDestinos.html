@@ -38,8 +38,7 @@
                                 {% csrf_token %}
                                 <input type="submit" value='Editar' class='eliminar_submit'>
                             </form>
-                            <form action='eliminar/{{destino.id}}' method='POST'>
-                                {% csrf_token %}
+                            <form action='eliminar/{{destino.id}}' method='GET'>
                                 <input type="submit" value='Eliminar' class='eliminar_submit'>
                             </form>
                         </div>
