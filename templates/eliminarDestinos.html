@@ -3,22 +3,31 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include 'head.html'%}
+    <link rel="stylesheet" type='text/css' href="{% static 'styles/eliminarConfirmacion.css' %}">
 <body>
-    {% include 'menu.html' %}
-    {% include 'home.html' %}
-    <div id='eliminarDestino'>
-        <div class='seleccionEliminar'>
-            <div class='opcionEliminar'>
-                <form action="eliminar" method='POST'>
-                    <input type="submit" value='SI'>
+    <div class="super_container">
+        <!-- Menu -->
+        {% include 'menu.html' %}
+        <!--Home-->
+        {% include 'home.html' %}
+        <!-- Search -->
+        <div id='eliminarDestino'>
+            <div class='seleccionEliminar'>
+                <div class='seleccion_header'>
+                    ¿Esta seguro de eliminar a este destino?
+                </div>
+                <form method='POST'>
+                    {% csrf_token %}
+                    <input class='input_seleccion' type="submit" value='SI'>
                 </form>
-            </div>
-            <div class='opcionEliminar'>
-                <form action=".." method='POST'>
-                    <input type="submit" value='NO'>
+                <form action="../listar" method='POST'>
+                    {% csrf_token %}
+                    <input class='input_seleccion' type="submit" value='NO'>
                 </form>
             </div>
         </div>
+        {% include 'footer.html' %}
     </div>
+    {% include 'scripts.html' %}
 </body>
 </html>
